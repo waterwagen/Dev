@@ -2,8 +2,6 @@
 // Variables ///
 ////////////////
 
-def codelibrary_root = "${projectDir}/../../CodeLibrary"
-
 ///////////////////
 /// Build Setup ///
 /////////////////// 
@@ -74,6 +72,16 @@ dependencies {
 repositories {
 	mavenCentral()
 }
+
+task jenkinsTest {
+	inputs.files test.outputs.files
+	doLast{
+		def timestamp = System.currentTimeMillis()
+		test.testResultsDir.eachFile { it.lastModified = timestamp }
+	}
+}
+ 
+build.dependsOn(jenkinsTest)
 
 //////////////////////////////////////////////////
 /// Some sandbox stuff to see how Gradle works ///
