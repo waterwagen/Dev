@@ -1,4 +1,5 @@
 package com.waterwagen
+import scala.actors._
 
 object HelloWorld extends App 
 {
@@ -64,4 +65,47 @@ object HelloWorld extends App
 	assert(str1.equals(str2)) // checks for equality as in java
 	assert(str1 == str2) // same as equals() method, unlike Java
 	assert(str1.eq(str2)) // actually checks for same reference, in Java this would be the == operator
+	
+	// Try some concurrency features
+	//Mesage types
+	case class RunningStateMessage(shouldRun:Boolean)
+	case class PrintStringMessage(str:String)
+	class MyFirstActor extends Actor
+	{
+		def act()
+		{
+			var running = true
+			while(running)
+			{
+				receive
+				{
+					case x:Boolean => println("Received boolean " + x)
+					case x:String => println("Received string " + x)
+					case x:RunningStateMessage => println("Received running state message " + x); running = x.shouldRun
+					case x:PrintStringMessage => println("Received print string message. String is " + x.str)
+					case _ => println("unknown message type received")
+				}
+			}
+		}
+	}
+	val first_actor = new MyFirstActor()
+	first_actor.start
+	first_actor ! "This is a message."
+	first_actor ! "This is also a message."
+	first_actor ! true
+	first_actor ! false
+	first_actor ! new PrintStringMessage("I want to print this message.")
+	first_actor ! "stop"
+	first_actor ! List(1,2,3)
+	first_actor ! RunningStateMessage(false) // new keyword is optional (only for case classes?)
+	first_actor ! "This message should not be received because the actor was stopped"
+	
+//	val receiving_actor = actor
+//	{
+//	  
+//	}
+//	val sending_actor = actor 
+//	{
+//		receiving_actor ! "Yo!"
+//	}
 }
