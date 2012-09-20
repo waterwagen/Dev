@@ -12,6 +12,7 @@ import javax.swing.JLabel;
  */
 public class Sandbox
 {
+	// A sandbox for trying things out
 	public static void main(String[] argv) throws IOException
 	{
 		final JFrame frame = new JFrame("Temp Title");
@@ -31,7 +32,7 @@ public class Sandbox
 				label.setText("Another thread set this text.");	
 			}
 		};
-		label_setter.start();
+		label_setter.start();  
 	}
 		
 	public void printString() 
