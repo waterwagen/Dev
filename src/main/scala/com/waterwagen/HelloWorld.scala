@@ -174,7 +174,7 @@ object HelloWorld extends App
 	// Additions to String from the StringOps class
 	val str = "blah"
 	assert(str.capitalize == "Blah")
-	assert(str.first == 'b')
+	assert(str.head == 'b')
 	assert(str.last == 'h')
 	assert(str.drop(2) == "ah")
 	assert(str.take(2) == "bl")
