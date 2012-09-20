@@ -73,6 +73,11 @@ repositories {
 	mavenCentral()
 }
 
+sourceSets.main {
+	java.srcDirs = []
+	scala.srcDir 'src/main/java'
+}
+
 task jenkinsTest {
 	inputs.files test.outputs.files
 	doLast{
