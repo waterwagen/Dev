@@ -1,6 +1,12 @@
-////////////////
-// Variables ///
-////////////////
+//////////////////
+/// Properties ///
+//////////////////
+
+version = '0.1-SNAPSHOT'
+
+/////////////////
+/// Variables ///
+/////////////////
 
 ///////////////////
 /// Build Setup ///
@@ -30,6 +36,7 @@ test {
 sonar {
 	project {
 		name = 'Dev'
+		version = version
 	}
     server {
         url = 'http://localhost:9000'
