@@ -28,6 +28,9 @@ test {
 }
 
 sonar {
+	project {
+		name = 'Dev'
+	}
     server {
         url = 'http://localhost:9000'
     }
