@@ -26,7 +26,7 @@ compileJava {
 test {
 	exclude '**/*Tests.class',
 			'com/waterwagen/SpikeSandbox.class',
-			'com/waterwagen/TestMlsSoftware.class',
+			'com/waterwagen/mris/TestMlsSoftware.class',
 			'com/waterwagen/parser/html/TestHtmlScraper.class'
 	jvmArgs '-Xms256m', '-Xmx512m', '-XX:MaxPermSize=128m'
 	forkEvery=1 // how many test classes should be run before creating a new JVM instance
