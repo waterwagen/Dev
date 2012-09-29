@@ -1,4 +1,4 @@
-package com.waterwagen;
+package com.waterwagen.mris;
 
 import static org.junit.Assert.*;
 
