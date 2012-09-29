@@ -86,8 +86,41 @@ task jenkinsTest {
 		test.testResultsDir.eachFile { it.lastModified = timestamp }
 	}
 }
- 
 build.dependsOn(jenkinsTest)
+
+task editAcceptanceTests << {
+	
+	println 'Starting FitNesse and opening the FitNesse home page in the browser... When finished using FitNesse, Ctl-C to stop Gradle task.'
+	
+	// start up the FitNesse server
+	def fitnesse_runner = 
+	{
+		ant.java(jar:'src/test/resources/fitnesse.jar', dir:'src/test/resources', fork:'true')
+	}
+	Thread thread = Thread.startDaemon(fitnesse_runner)
+	
+	// open the FitNesse url in a browser after FitNesse starts up
+	def fitnesse_homepage_opener =
+	{
+		def fitnesse_url = new URL('http://localhost')
+		def connection_accepted = false
+		while(!connection_accepted)
+		{
+		    try
+		    {
+		        fitnesse_url.content
+		        connection_accepted = true
+		    }
+		    catch(Exception exc){Thread.sleep(500L)}
+		}
+		
+		def command = 'chrome localhost'
+		def process = command.execute()
+	}
+	Thread.startDaemon(fitnesse_homepage_opener)
+	
+	while(true) {Thread.sleep(1000L)}
+}
 
 //////////////////////////////////////////////////
 /// Some sandbox stuff to see how Gradle works ///

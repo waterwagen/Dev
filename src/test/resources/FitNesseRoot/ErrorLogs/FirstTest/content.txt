@@ -1,0 +1,6 @@
+!3 !-slim-!
+|'''Date: '''|!-3:31:06 PM (EDT) on Saturday, September 29, 2012-!|
+|'''Test Page: '''|.FirstTest|
+|'''Command: '''|!-java -cp fitnesse.jar;C:\CodeProjects\Dev_trunk\bin fitnesse.slim.SlimService  8086-!|
+|'''Exit code: '''|!-0-!|
+|'''Time elapsed: '''|!-0.863 seconds-!|
