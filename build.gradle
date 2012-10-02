@@ -26,8 +26,7 @@ compileJava {
 test {
 	exclude '**/*Tests.class',
 			'com/waterwagen/SpikeSandbox.class',
-			'com/waterwagen/mris/TestMlsSoftware.class',
-			'com/waterwagen/parser/html/TestHtmlScraper.class'
+			'com/waterwagen/mris/TestMlsSoftware.class'
 	jvmArgs '-Xms256m', '-Xmx512m', '-XX:MaxPermSize=128m'
 	forkEvery=1 // how many test classes should be run before creating a new JVM instance
 //	maxParallelForks = 5 // how many test classes should be run at the same time
@@ -38,19 +37,13 @@ sonar {
 		name = 'Dev'
 		version = version
 	}
-    server {
-        url = 'http://localhost:9000'
-    }
-    database {
-//      url = 'jdbc:h2:tcp://localhost:9092/sonar' // for Sonar 3.2
-//		driverClassName = 'org.h2.Driver' // for Sonar 3.2
-//      url = 'jdbc:derby://localhost:1527/sonar;create=true' // for Sonar 3.1.1
-//		driverClassName = 'org.apache.derby.jdbc.ClientDriver' // for Sonar 3.1.1
-//		username = 'sonar' // don't need for Oracle driver
-//      password = 'sonar' // don't need for Oracle driver
-        url = 'jdbc:oracle:thin:sonar/sonar@localhost:1521:XE'
+	server {
+		url = 'http://localhost:9000'
+	}
+	database {
+		url = 'jdbc:oracle:thin:sonar/sonar@localhost:1521:XE'
 		driverClassName = 'oracle.jdbc.OracleDriver'
-    }
+	}
 }
 sonarAnalyze.dependsOn build
 
