@@ -1,6 +1,6 @@
 !contents -R2 -g -p -f -h
 !define TEST_SYSTEM {slim}
-!path C:\CodeProjects\Dev_trunk\bin
+!path ${java.class.path}
 
 This is my first FitNesse test. How does it look? Does it pass? See the table below for the pass criteria.
 

@@ -88,7 +88,15 @@ task editAcceptanceTests << {
 	// start up the FitNesse server
 	def fitnesse_runner = 
 	{
-		ant.java(jar:'src/test/resources/fitnesse.jar', dir:'src/test/resources', fork:'true')
+		def path_seperator = System.getProperty("path.separator")
+		def classpath_str = "${projectDir}/src/test/resources/fitnesse.jar" + path_seperator + 
+							"${projectDir}/build/classes/main" + path_seperator + 
+							"${projectDir}/build/classes/test"
+//		ant.java(classpath:classpath_str, jar:'src/test/resources/fitnesse.jar', dir:'src/test/resources', fork:'true')
+//		{
+//			arg('-Dfitnesse.dev.regression.classpath':classpath_str)
+//		}
+		ant.java(classpath:classpath_str, classname:'fitnesseMain.FitNesseMain', dir:'src/test/resources', fork:'true')
 	}
 	Thread thread = Thread.startDaemon(fitnesse_runner)
 	

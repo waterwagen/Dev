@@ -1,6 +1,6 @@
 !3 !-slim-!
-|'''Date: '''|!-11:59:45 AM (EDT) on Tuesday, October 2, 2012-!|
+|'''Date: '''|!-3:06:43 PM (EDT) on Tuesday, October 2, 2012-!|
 |'''Test Page: '''|.FirstTest|
-|'''Command: '''|!-java -cp fitnesse.jar;C:\CodeProjects\Dev_trunk\bin fitnesse.slim.SlimService  8086-!|
+|'''Command: '''|!-java -cp fitnesse.jar;C:\CodeProjects\Dev_trunk\src\test\resources\fitnesse.jar;C:\CodeProjects\Dev_trunk\build\classes\main;C:\CodeProjects\Dev_trunk\build\classes\test fitnesse.slim.SlimService  8086-!|
 |'''Exit code: '''|!-0-!|
-|'''Time elapsed: '''|!-1.047 seconds-!|
+|'''Time elapsed: '''|!-0.913 seconds-!|
