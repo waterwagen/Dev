@@ -7,6 +7,7 @@ This is my first FitNesse test. How does it look? Does it pass? See the table be
 !|com.waterwagen.mris.FirstTestFitnesseFixture|
 |input1|input2|output1?|
 |1|2|3|
+|1|1|0|
 
 
 Back to the editing pages tutorial: FitNesse.UserGuide.EditingFitNessePages

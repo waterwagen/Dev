@@ -124,13 +124,24 @@ task editAcceptanceTests(dependsOn:startFitNesse) << {
 task runAcceptanceTests(dependsOn:startFitNesse) << {
 	
 	def test_name = 'FirstTest'
-	def test_result_file_path = "${buildDir}\\fitnesse-result.xml"
+	def fitnesse_result_file_path = "${buildDir}\\fitnesse-result.xml"
 
-	println "Running the project acceptance test named ${test_name} and writing the results to file at ${test_result_file_path}."
+	println "Running the project acceptance test named ${test_name} and writing the results to file at ${fitnesse_result_file_path}."
 	
 	def test_result = new URL("http://localhost/${test_name}?test&format=xml").content.text
-	def result_file = new File(test_result_file_path)
+	def result_file = new File(fitnesse_result_file_path)
 	result_file.write(test_result)
+	
+	throwExceptionOnAnyFitNesseTestFailures(fitnesse_result_file_path)
+}
+
+def throwExceptionOnAnyFitNesseTestFailures(fitnesse_result_file_path)
+{
+	def file_contents = new File(fitnesse_result_file_path).text
+	def xml_root = new XmlParser().parseText(file_contents)
+	def wrong_count = Integer.parseInt(xml_root.result.counts.wrong.text())
+	if(wrong_count > 0) 
+		throw new RuntimeException("${wrong_count} acceptance test(s) failed. See ${fitnesse_result_file_path} for details.")
 }
 
 //////////////////////////////////////////////////
