@@ -81,46 +81,56 @@ task jenkinsTest {
 }
 build.dependsOn(jenkinsTest)
 
-task editAcceptanceTests << {
-	
-	println 'Starting FitNesse and opening the FitNesse home page in the browser... When finished using FitNesse, Ctl-C to stop Gradle task.'
+def path_seperator = System.getProperty("path.separator")
+def fitnesse_classpath_str = "${projectDir}/src/test/resources/fitnesse.jar" + path_seperator +
+					"${projectDir}/build/classes/main" + path_seperator +
+					"${projectDir}/build/classes/test"
+
+task startFitNesse << {
 	
 	// start up the FitNesse server
-	def fitnesse_runner = 
-	{
-		def path_seperator = System.getProperty("path.separator")
-		def classpath_str = "${projectDir}/src/test/resources/fitnesse.jar" + path_seperator + 
-							"${projectDir}/build/classes/main" + path_seperator + 
-							"${projectDir}/build/classes/test"
-//		ant.java(classpath:classpath_str, jar:'src/test/resources/fitnesse.jar', dir:'src/test/resources', fork:'true')
-//		{
-//			arg('-Dfitnesse.dev.regression.classpath':classpath_str)
-//		}
-		ant.java(classpath:classpath_str, classname:'fitnesseMain.FitNesseMain', dir:'src/test/resources', fork:'true')
-	}
-	Thread thread = Thread.startDaemon(fitnesse_runner)
+	println 'Starting Fitnesse...'
 	
-	// open the FitNesse url in a browser after FitNesse starts up
-	def fitnesse_homepage_opener =
+	Thread thread = Thread.startDaemon
 	{
-		def fitnesse_url = new URL('http://localhost')
-		def connection_accepted = false
-		while(!connection_accepted)
-		{
-		    try
-		    {
-		        fitnesse_url.content
-		        connection_accepted = true
-		    }
-		    catch(Exception exc){Thread.sleep(500L)}
-		}
-		
-		def command = 'chrome localhost'
-		def process = command.execute()
+		ant.java(classpath:fitnesse_classpath_str, classname:'fitnesseMain.FitNesseMain', dir:'src/test/resources', fork:'true')
 	}
-	Thread.startDaemon(fitnesse_homepage_opener)
+	
+	// wait for FitNesse to start up
+	def fitnesse_url = new URL('http://localhost')
+	def connection_accepted = false
+	while(!connection_accepted)
+	{
+	    try
+	    {
+	        fitnesse_url.content
+	        connection_accepted = true
+	    }
+	    catch(Exception exc){Thread.sleep(500L)}
+	}
+}
+
+task editAcceptanceTests(dependsOn:startFitNesse) << {
+	
+	// open the FitNesse url in a browser after starting FitNesse
+	println 'Fitnesse started. Opening the FitNesse home page in the browser... When finished using FitNesse, Ctl-C to stop Gradle task.'
+
+	def command = 'chrome localhost'
+	def process = command.execute()
 	
 	while(true) {Thread.sleep(1000L)}
+}
+
+task runAcceptanceTests(dependsOn:startFitNesse) << {
+	
+	def test_name = 'FirstTest'
+	def test_result_file_path = "${buildDir}\\fitnesse-result.xml"
+
+	println "Running the project acceptance test named ${test_name} and writing the results to file at ${test_result_file_path}."
+	
+	def test_result = new URL("http://localhost/${test_name}?test&format=xml").content.text
+	def result_file = new File(test_result_file_path)
+	result_file.write(test_result)
 }
 
 //////////////////////////////////////////////////
