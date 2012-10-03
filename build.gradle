@@ -122,12 +122,12 @@ task editAcceptanceTests(dependsOn:startFitNesse) << {
 
 task runAcceptanceTests(dependsOn:startFitNesse) << {
 	
-	def test_name = 'FirstTest'
+	def test_name = 'MrisContactInfoApplication.MrisRegressionSuite?suite'
 	def fitnesse_result_file_path = "${buildDir}\\fitnesse-result.xml"
 
 	println "Running the project acceptance test named ${test_name} and writing the results to file at ${fitnesse_result_file_path}."
 	
-	def test_result = new URL("http://localhost/${test_name}?test&format=xml").content.text
+	def test_result = new URL("http://localhost/${test_name}&format=xml").content.text
 	def result_file = new File(fitnesse_result_file_path)
 	result_file.write(test_result)
 	

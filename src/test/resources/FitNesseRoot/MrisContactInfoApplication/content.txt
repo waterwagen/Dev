@@ -1,0 +1,5 @@
+!contents -R2 -g -p -f -h
+!define TEST_SYSTEM {slim}
+!path ${java.class.path}
+
+This is the sub-wiki for the MRIS/MLS contact information collation application.

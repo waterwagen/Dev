@@ -4,5 +4,3 @@
 !|com.waterwagen.mris.FirstTestFitnesseFixture|
 |input1|input2|output1?|
 |1|2|3|
-
-Back to MrisRegressionSuite.

@@ -4,7 +4,8 @@
 	<Help/>
 	<Properties/>
 	<Refactor/>
+	<Search/>
+	<Suite/>
 	<Suites/>
-	<Test/>
 	<WhereUsed/>
 </properties>

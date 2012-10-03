@@ -1,2 +1,9 @@
-|FirstTest||12:45:27 Wed, Oct 03, 2012|
-|FrontPage||12:56:38 Fri, Sep 28, 2012|
+|MrisContactInfoApplication.MrisDevelopmentSuite.SecondTest||17:09:07 Wed, Oct 03, 2012|
+|MrisContactInfoApplication.MrisRegressionSuite.FirstTest||17:08:16 Wed, Oct 03, 2012|
+|MrisContactInfoApplication||16:54:25 Wed, Oct 03, 2012|
+|MrisContactInfoApplication.MrisRegressionSuite||16:52:41 Wed, Oct 03, 2012|
+|MrisRegressionSuite||16:51:09 Wed, Oct 03, 2012|
+|MrisRegressionSuite.FirstTest||16:50:23 Wed, Oct 03, 2012|
+|FirstTest||16:47:20 Wed, Oct 03, 2012|
+|MrisDevelopmentSuite||16:47:01 Wed, Oct 03, 2012|
+|FrontPage||16:30:54 Wed, Oct 03, 2012|

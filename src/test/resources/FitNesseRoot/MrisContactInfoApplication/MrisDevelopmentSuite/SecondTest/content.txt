@@ -1,8 +1,6 @@
 !contents -R2 -g -p -f -h
-!define TEST_SYSTEM {slim}
 
 !|com.waterwagen.mris.FirstTestFitnesseFixture|
 |input1|input2|output1?|
-|1|2|3|
-
-Back to MrisRegressionSuite.
+|4|1|5|
+|12|7|19|

@@ -1,0 +1,6 @@
+!contents -R2 -g -p -f -h
+!define TEST_SYSTEM {slim}
+
+This is the suite of tests for features still to be developed.
+
+Back to MrisContactInfoApplication.
