@@ -8,6 +8,11 @@ version = '0.1-SNAPSHOT'
 /// Variables ///
 /////////////////
 
+def path_seperator = System.getProperty("path.separator")
+def fitnesse_classpath_str = "${projectDir}/src/test/resources/fitnesse.jar" + path_seperator +
+					"${projectDir}/build/classes/main" + path_seperator +
+					"${projectDir}/build/classes/test"
+
 ///////////////////
 /// Build Setup ///
 /////////////////// 
@@ -45,7 +50,6 @@ sonar {
 		driverClassName = 'oracle.jdbc.OracleDriver'
 	}
 }
-//sonarAnalyze.dependsOn build
 
 dependencies {
 	compile 'org.apache.httpcomponents:httpclient:4.2.1',
@@ -80,11 +84,6 @@ task jenkinsTest {
 	}
 }
 build.dependsOn(jenkinsTest)
-
-def path_seperator = System.getProperty("path.separator")
-def fitnesse_classpath_str = "${projectDir}/src/test/resources/fitnesse.jar" + path_seperator +
-					"${projectDir}/build/classes/main" + path_seperator +
-					"${projectDir}/build/classes/test"
 
 task startFitNesse << {
 	
