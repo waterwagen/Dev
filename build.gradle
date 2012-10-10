@@ -147,6 +147,7 @@ task acceptanceTest(type:Test)
 acceptanceTest
 {
 	include 'com/waterwagen/mris/acceptancetest/AllRegressionAcceptanceTests.class'
+	scanForTestClasses false
 }
 
 //////////////////////////////////////////////////
