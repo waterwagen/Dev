@@ -143,8 +143,8 @@ def throwExceptionOnAnyFitNesseTestFailures(fitnesse_result_file_path)
 		throw new RuntimeException("${wrong_count} acceptance test(s) failed. See ${fitnesse_result_file_path} for details.")
 }
 
-task acceptanceTest(type:Test)
-acceptanceTest
+task regressionAcceptanceTest(type:Test)
+regressionAcceptanceTest
 {
 	include 'com/waterwagen/mris/acceptancetest/AllRegressionAcceptanceTests.class'
 	scanForTestClasses false
