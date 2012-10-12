@@ -150,6 +150,13 @@ regressionAcceptanceTest
 	scanForTestClasses false
 }
 
+task developmentAcceptanceTest(type:Test)
+developmentAcceptanceTest
+{
+	include 'com/waterwagen/mris/acceptancetest/AllDevelopmentAcceptanceTests.class'
+	scanForTestClasses false
+}
+
 //////////////////////////////////////////////////
 /// Some sandbox stuff to see how Gradle works ///
 //////////////////////////////////////////////////
