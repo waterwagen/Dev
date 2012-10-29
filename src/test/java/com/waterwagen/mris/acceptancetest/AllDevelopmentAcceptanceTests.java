@@ -5,5 +5,5 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({})
+@SuiteClasses({MrisContactInformationTransformerEndToEndTest.class})
 public class AllDevelopmentAcceptanceTests {}
