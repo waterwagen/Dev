@@ -1,110 +1,175 @@
 package com.waterwagen;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.lang.reflect.InvocationTargetException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
+
+import org.fest.swing.core.BasicRobot;
+import org.fest.swing.core.ComponentLookupScope;
+import org.fest.swing.core.Robot;
+import org.fest.swing.edt.FailOnThreadViolationRepaintManager;
+import org.fest.swing.fixture.FrameFixture;
+import org.fest.swing.fixture.JButtonFixture;
+import org.fest.swing.fixture.JLabelFixture;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class SpikeSandbox
 {
-	// add two numbers algorithm: 
-	//								'&' then '<< 1' handles the bits which are the same in the two numbers, 
-	//								what about the bits that are different?
-	
-//	private int bitwiseAddition(int first, int second)
-//	{
-//		int common_bits = first & second;
-//		int different_bits = first ^ second;
-//		int common_bits_doubled = common_bits << 1; // double the common bits because they were in both numbers; we do this by shifting all the bits to the left one place
-//		
-//		int result = different_bits;
-//		int bits_to_add = common_bits_doubled;
-//		while(true)
-//		{
-//			if((result & bits_to_add) == 0) // if there are no bits which are set in both numbers, then it's safe to or them together and return the result
-//				return result | bits_to_add;
-//			int orig_result = result;
-//			result = result ^ bits_to_add;
-//			bits_to_add = orig_result & bits_to_add;
-//			bits_to_add = bits_to_add << 1;
-//		}
-//	}
-	
-	private int bitwiseAddition(int first, int second)
+	private FrameFixture mFrameFixture;
+
+	@BeforeClass 
+	public static void setUpClass() 
 	{
-		int exclusive_bits = first ^ second;  // these are the bits which are only set in one of the numbers
-		int carry_bits = first & second;  // these are the bits which are set in both numbers
-		
-		carry_bits <<= 1;  // carry the carry bits by shifting them left one place
-		int result = exclusive_bits;  // initialize the result to the value of the exclusive bits since they need no further processing
-		while((result & carry_bits) != 0) // if after carrying the carry bits there are still bits which are set in both numbers, then set any exclusive bits on the result and shift the rest of the remaining bits left before trying this test again
+		FailOnThreadViolationRepaintManager.install();
+	}
+	
+	@Before
+	public void setUpTest() throws InvocationTargetException, InterruptedException
+	{
+		System.out.println("@Before 1 executed");
+//		TestJFrame test_frame = GuiActionRunner.execute(new GuiQuery<TestJFrame>() 
+//		{
+//			protected TestJFrame executeInEDT() 
+//			{
+//				return new TestJFrame();
+//			}
+//		});
+		Thread app_thread = new Thread()
 		{
-			int orig_result = result;
-			result = result ^ carry_bits;  // set the bits which are only in the shifted carry bits on the result because they are safe to add
-			carry_bits = (orig_result & carry_bits) << 1; // set the carry bits to be only the current bits which are in the result also, now that we've modified the result
-		}
-		return result | carry_bits;
+			@Override
+			public void run()
+			{
+				try
+				{
+					Main.main(null);
+				} 
+				catch (InvocationTargetException | InterruptedException exc)
+				{
+					exc.printStackTrace();
+				}
+			}
+		};
+		app_thread.start();
+		Robot robot = BasicRobot.robotWithCurrentAwtHierarchy();
+		robot.settings().componentLookupScope(ComponentLookupScope.ALL);
+		mFrameFixture = new FrameFixture(robot, "testWindow");
+//		mFrameFixture.target.setVisible(true);
+	}
+	
+	@Before
+	public void setUp2() throws InvocationTargetException, InterruptedException
+	{
+		System.out.println("@Before 2 executed");
+	}
+	
+	@Before
+	public void setUp3() throws InvocationTargetException, InterruptedException
+	{
+		System.out.println("@Before 3 executed");
 	}
 	
 	@Test
 	public void test()
 	{
-		assertBitwiseAdditionEqualsPlusAddition(0, 0);
-		assertBitwiseAdditionEqualsPlusAddition(7, 14);
-		assertBitwiseAdditionEqualsPlusAddition(22, 38);
-		assertBitwiseAdditionEqualsPlusAddition(22, 46);
-		assertBitwiseAdditionEqualsPlusAddition(401, 593);
-		assertBitwiseAdditionEqualsPlusAddition(153252, 36346);
-		assertBitwiseAdditionEqualsPlusAddition(32454236, 23263426);
-		
-		assertEqual(10 + 10, 10 << 1);
-		assertEqual(2 + 4, 2 | 4);
+		JButtonFixture button = mFrameFixture.button();
+		assertThat(button, notNullValue());
 
-		int fir = 31;
-		int sec = 7;
-		int diff_bits = fir ^ sec;
-		assertEqual(diff_bits, 24);
-		int same_bits = fir & sec;
-		assertEqual(same_bits, 7);
-		assertEqual(diff_bits + (same_bits << 1), 38);
-		
-		assertEqual(2 | 2, 2);
-		assertEqual(2 ^ 2, 0);
-		assertEqual(2 & 2, 2);
-//		assertEqual(~Integer.MAX_VALUE, 0);
-		
-		assertEqual(1 | 2, 3);
-		assertEqual(1 ^ 2, 3);
-		assertEqual(1 & 2, 0);
-		
-		assertEqual(1 | 3, 3);
-		assertEqual(1 ^ 3, 2);
-		assertEqual(1 & 3, 1);
-		
-		assertEqual(15 | 10, 15);
-		assertEqual(15 ^ 10, 5);
-		assertEqual(15 & 10, 10);
-		
-		assertEqual(7 | 14, 15);
-		assertEqual(7 ^ 14, 9);
-		assertEqual(7 & 14, 6);
-		
-		assertEqual(2 << 1, 4);
-		assertEqual(2 << 2, 8);
-		assertEqual(2 >> 1, 1);
-		assertEqual(2 >> 2, 0);
-		
-		assertEqual(3 << 1, 6);
-		assertEqual(3 << 2, 12);
-	}
+		JLabelFixture label = mFrameFixture.label("label1");
+		assertThat(label, notNullValue());
+		assertThat(label.text(), is(equalTo("Label One")));
 
-	private void assertBitwiseAdditionEqualsPlusAddition(int first, int second)
-	{
-		assertEqual(first + second, bitwiseAddition(first,second));
+		label = mFrameFixture.label("label2");
+		assertThat(label, notNullValue());
+		assertThat(label.text(), is(equalTo("Label Two")));
 	}
 	
-	private void assertEqual(int expected, int result)
+	private static class Main 
 	{
-		assertThat(result, is(equalTo(expected)));
+		public static void main(String[] argv) throws InvocationTargetException, InterruptedException
+		{
+			new Main().start();
+		}
+		
+		private TestWindow mMainGui = null;
+		
+		public void start() throws InvocationTargetException, InterruptedException
+		{
+			startGui();
+		}
+		
+		private void startGui() throws InvocationTargetException, InterruptedException
+		{
+			SwingUtilities.invokeAndWait(new Runnable()
+			{
+				@Override
+				public void run()
+				{
+					mMainGui = new TestWindow();
+					mMainGui.setName("testWindow");
+					mMainGui.setVisible(true);
+				}
+			});
+		}
+	}
+	
+	private static class TestWindow extends JFrame
+	{
+		private JButton mClickMe = new JButton("Click Me!");
+		private JLabel mLabel1 = new JLabel("Label One");
+		private JLabel mLabel2 = new JLabel("Label Two");		
+		
+		private TestWindow()
+		{
+			this.add(mClickMe);
+			mLabel1.setName("label1");
+			mLabel1.addMouseListener(buildPrintingMouseListener("Label 1 was clicked on!"));
+			this.add(mLabel1);
+			mLabel2.setName("label2");
+			this.add(mLabel2);
+		}
+
+		private MouseListener buildPrintingMouseListener(final String string)
+		{
+			return new MouseListener()
+			{
+				@Override
+				public void mouseClicked(MouseEvent arg0)
+				{
+					System.out.println(string);
+				}
+
+				@Override
+				public void mouseEntered(MouseEvent arg0)
+				{
+				}
+
+				@Override
+				public void mouseExited(MouseEvent arg0)
+				{
+				}
+
+				@Override
+				public void mousePressed(MouseEvent arg0)
+				{
+				}
+
+				@Override
+				public void mouseReleased(MouseEvent arg0)
+				{
+				}
+			};
+		}
 	}
 }
