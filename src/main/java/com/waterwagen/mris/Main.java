@@ -9,7 +9,7 @@ import com.google.inject.Injector;
 
 public class Main 
 {
-	public static final String MAIN_WINDOW_COMPONENT_NAME = "MrisMainWindow";
+	public static final String MAIN_WINDOW_COMPONENT_NAME = "mrisMainWindow";
 
 	public static void main(String[] argv) throws InvocationTargetException, InterruptedException
 	{
