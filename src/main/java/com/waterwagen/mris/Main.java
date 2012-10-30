@@ -57,7 +57,8 @@ public class Main
 			{
 				MrisMainWindow main_window = injector.getInstance(MrisMainWindow.class);
 				main_window.setName(MAIN_WINDOW_COMPONENT_NAME);
-				main_window.setVisible(visible);
+				main_window.display();
+//				main_window.setVisible(visible);
 			}
 		});
 	}
