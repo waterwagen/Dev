@@ -27,13 +27,11 @@ public class MrisApplicationRunner
 	{
 		try
 		{
-			Main.main(Arrays.array("mris.headless=true"));
+			Main.main(null);
 			
 			Robot robot = BasicRobot.robotWithCurrentAwtHierarchy();
 			robot.settings().componentLookupScope(ComponentLookupScope.ALL); // do I want this (all) or only visible components?
 			mFrameFixture = new FrameFixture(robot, Main.MAIN_WINDOW_COMPONENT_NAME);
-			mFrameFixture.show();
-//			((MrisMainWindow)frameFixture().target).display();
 		} 
 		catch (InvocationTargetException | InterruptedException exc)
 		{
