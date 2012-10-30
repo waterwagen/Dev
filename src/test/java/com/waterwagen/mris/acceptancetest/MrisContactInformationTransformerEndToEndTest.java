@@ -1,14 +1,12 @@
 package com.waterwagen.mris.acceptancetest;
 
+import static com.waterwagen.mris.TestingConstants.SIMPLE_INPUT_FILE_CONTENTS;
+import static com.waterwagen.mris.TestingConstants.SIMPLE_INPUT_FILE_PATH;
+import static com.waterwagen.mris.TestingConstants.SIMPLE_OUTPUT_FILE_CONTENTS;
+import static com.waterwagen.mris.TestingConstants.SIMPLE_OUTPUT_FILE_PATH;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-import static com.waterwagen.mris.StandardAgentContactBuilder.*;
-import static com.waterwagen.mris.TestUtils.*;
-import static com.waterwagen.mris.TestingConstants.*;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -21,7 +19,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.waterwagen.mris.TestingConstants;
 import com.waterwagen.mris.FileUtils;
 
 @RunWith(CacioTestRunner.class)
@@ -38,7 +35,7 @@ public class MrisContactInformationTransformerEndToEndTest
 		assertFileExists(SIMPLE_INPUT_FILE_PATH);
 		assertFileContents(SIMPLE_INPUT_FILE_PATH, SIMPLE_INPUT_FILE_CONTENTS);
 
-		mApplication = buildApplicationRunner();
+		mApplication = new MrisApplicationRunner();
 		mApplication.start();
 	}
 
@@ -78,15 +75,5 @@ public class MrisContactInformationTransformerEndToEndTest
 	{
 		boolean file_existence = Files.exists(Paths.get(file_name));
 		assertThat(file_existence, is(true));
-	}
-
-	///////////////////////
-	/// Utility Methods ///
-	///////////////////////
-
-	private MrisApplicationRunner buildApplicationRunner()
-	{
-		return new MrisApplicationRunnerVisible();
-//		return new MrisApplicationRunnerHeadless();
 	}
 }
