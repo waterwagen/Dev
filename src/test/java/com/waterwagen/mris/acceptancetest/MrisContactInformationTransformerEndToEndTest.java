@@ -14,13 +14,17 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import net.java.openjdk.cacio.ctc.junit.CacioTestRunner;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import com.waterwagen.mris.TestingConstants;
 import com.waterwagen.mris.FileUtils;
 
+@RunWith(CacioTestRunner.class)
 public class MrisContactInformationTransformerEndToEndTest
 {
 	private MrisApplicationRunner mApplication;
@@ -82,7 +86,7 @@ public class MrisContactInformationTransformerEndToEndTest
 
 	private MrisApplicationRunner buildApplicationRunner()
 	{
-//		return new MrisApplicationRunnerVisible();
-		return new MrisApplicationRunnerHeadless();
+		return new MrisApplicationRunnerVisible();
+//		return new MrisApplicationRunnerHeadless();
 	}
 }

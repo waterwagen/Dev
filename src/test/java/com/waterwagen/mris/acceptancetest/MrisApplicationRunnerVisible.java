@@ -18,8 +18,7 @@ public class MrisApplicationRunnerVisible extends AbstractMrisApplicationRunner
 	@Override
 	public void transformFile(String contacts_file_path)
 	{
-//		JTextComponentFixture text_box = frameFixture().textBox("fileInput");
-		JButtonFixture button = frameFixture().button("processContacts");
-		button.click();
+		frameFixture().textBox().setText(contacts_file_path);
+		frameFixture().button().click();
 	}
 }
