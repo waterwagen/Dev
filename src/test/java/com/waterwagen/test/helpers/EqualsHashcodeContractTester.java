@@ -1,4 +1,4 @@
-package com.waterwagen.mris;
+package com.waterwagen.test.helpers;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;

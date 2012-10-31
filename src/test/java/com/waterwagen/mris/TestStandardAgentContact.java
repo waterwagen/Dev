@@ -9,6 +9,8 @@ import static com.waterwagen.mris.TestUtils.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.waterwagen.test.helpers.EqualsHashcodeContractTester;
+
 public class TestStandardAgentContact extends EqualsHashcodeContractTester
 {	
 	private StandardAgentContactBuilder mBuilder;
