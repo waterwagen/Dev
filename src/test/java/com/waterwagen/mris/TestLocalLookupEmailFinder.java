@@ -32,6 +32,6 @@ public class TestLocalLookupEmailFinder
 	@Test
 	public void testFindsEmailAddressById()
 	{
-		assertThat(mFinder.findEmailAddress(mContact), is(equalTo(mExpectedEmailAddress)));
+		assertThat(mFinder.findEmailAddressFor(mContact), is(equalTo(mExpectedEmailAddress)));
 	}
 }

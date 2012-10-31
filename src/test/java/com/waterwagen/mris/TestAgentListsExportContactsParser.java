@@ -9,12 +9,12 @@ import java.util.List;
 
 import org.junit.Test;
 
-public class TestSimpleContactsParser
+public class TestAgentListsExportContactsParser
 {
 	@Test
-	public void test()
+	public void testParsingResult()
 	{
-		SimpleContactsParser parser = new SimpleContactsParser();
+		AgentListsExportContactsParser parser = new AgentListsExportContactsParser();
 		StandardAgentContactBuilder jake_contact = aContact().
 													withFirstName(FIRSTNAME_FOR_JAKE).
 													withLastName(LASTNAME_FOR_JAKE).

@@ -23,9 +23,9 @@ public class IntegrationTestContactsTransformer
 	@Before
 	public void setUp() throws Exception
 	{
-		mContactsTransformer = new ContactsTransformer(new SimpleContactsParser(), new LocalLookupEmailFinder(buildMap("00000:peregrinet@gmail.com")));
+		mContactsTransformer = new ContactsTransformer(new AgentListsExportContactsParser(), new LocalLookupEmailFinder(buildMap("00000:peregrinet@gmail.com")));
 		listener = context.mock(ContactsTransformedListener.class);
-		mContactsTransformer.addContactsTransformedListener(listener);
+		mContactsTransformer.setContactsTransformedListener(listener);
 	}
 
 	@Test

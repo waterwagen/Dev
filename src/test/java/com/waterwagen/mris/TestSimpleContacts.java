@@ -12,7 +12,7 @@ import org.junit.Test;
 
 public class TestSimpleContacts
 {
-	private SimpleContacts mContacts;
+	private AgentListsExportContactDocument mContacts;
 	private Contact mContact2;
 	private Contact mContact1;
 	

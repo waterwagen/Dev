@@ -35,9 +35,9 @@ public class TestContactsTransformer
 //	private Contact mJakeContactMock2;
 	private Contact mJakeContact1;
 	private Contact mJakeContact2;
-	private Contacts mContactsMock;
+	private ContactsDocument mContactsMock;
 	private EmailAddress mJakeEmailAddress;
-	private Contacts mContacts;
+	private ContactsDocument mContacts;
 
 	@Before
 	public void setUp()
@@ -45,7 +45,7 @@ public class TestContactsTransformer
 		mParserMock = context.mock(ContactsParser.class);
 		mFinderMock = context.mock(EmailAddressFinder.class);
 		listener = context.mock(ContactsTransformedListener.class);
-		mContactsMock = context.mock(Contacts.class);
+		mContactsMock = context.mock(ContactsDocument.class);
 //		mJakeContactMock1 = context.mock(Contact.class, "contact1");
 //		mJakeContactMock2 = context.mock(Contact.class, "contact2");
 
@@ -56,7 +56,7 @@ public class TestContactsTransformer
 		mJakeEmailAddress = new EmailAddress(TestingConstants.EMAILADDRESS_FOR_JAKE);
 
 		mContactsTransformer = new ContactsTransformer(mParserMock, mFinderMock);
-		mContactsTransformer.addContactsTransformedListener(listener);
+		mContactsTransformer.setContactsTransformedListener(listener);
 	}
 
 	@Test
@@ -89,10 +89,10 @@ public class TestContactsTransformer
 			allowing(mParserMock).parse(INPUT_CONTACTS); 
 				will(returnValue(mContactsMock)); 
 				then(state.is("parsed"));
-			allowing(mFinderMock).findEmailAddress(with(equal(mJakeContact1))); 
+			allowing(mFinderMock).findEmailAddressFor(with(equal(mJakeContact1))); 
 				will(returnValue(mJakeEmailAddress)); 
 				then(state.is("inserted"));																						
-			allowing(mFinderMock).findEmailAddress(with(equal(mJakeContact2))); 
+			allowing(mFinderMock).findEmailAddressFor(with(equal(mJakeContact2))); 
 				will(returnValue(mJakeEmailAddress)); 
 				then(state.is("inserted"));																						
 			allowing(mContactsMock).stringValue(); 
@@ -119,8 +119,8 @@ public class TestContactsTransformer
 			allowing(mContactsMock).list(); will(returnValue(Arrays.asList(mJakeContact1, mJakeContact2)));
 	
 			// expectations
-			oneOf(mFinderMock).findEmailAddress(with(equal(mJakeContact1)));																						
-			oneOf(mFinderMock).findEmailAddress(with(equal(mJakeContact2)));																						
+			oneOf(mFinderMock).findEmailAddressFor(with(equal(mJakeContact1)));																						
+			oneOf(mFinderMock).findEmailAddressFor(with(equal(mJakeContact2)));																						
 		}});
 
 		mContactsTransformer.transformRequest(TestingConstants.SIMPLE_INPUT_FILE_CONTENTS);		
