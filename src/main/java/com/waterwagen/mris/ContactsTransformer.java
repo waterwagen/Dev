@@ -4,8 +4,8 @@ import com.google.inject.Inject;
 
 public class ContactsTransformer implements TransformRequestListener
 {
-	private ContactsParser mParser;
-	private EmailAddressFinder mFinder;
+	private final ContactsParser mParser;
+	private final EmailAddressFinder mFinder;
 	private ContactsTransformedListener mListener;
 
 	@Inject
@@ -25,7 +25,7 @@ public class ContactsTransformer implements TransformRequestListener
 	}
 
 	@Inject
-	public void addContactsTransformedListener(ContactsTransformedListener listener)
+	public void setContactsTransformedListener(ContactsTransformedListener listener)
 	{
 		mListener = listener;
 	}
