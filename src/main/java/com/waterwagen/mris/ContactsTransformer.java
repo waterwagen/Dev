@@ -18,9 +18,9 @@ public class ContactsTransformer implements TransformRequestListener
 	@Override
 	public void transformRequest(String contacts_str)
 	{
-		Contacts contacts = mParser.parse(contacts_str);
+		ContactsDocument contacts = mParser.parse(contacts_str);
 		for(Contact contact : contacts.list())
-			contact.insertEmailAddress(mFinder.findEmailAddress(contact));
+			contact.insertEmailAddress(mFinder.findEmailAddressFor(contact));
 		mListener.contactsTransformed(contacts.stringValue());
 	}
 

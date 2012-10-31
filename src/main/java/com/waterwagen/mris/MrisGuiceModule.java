@@ -19,7 +19,7 @@ public final class MrisGuiceModule extends AbstractModule
 	{
 		bind(MrisMainWindow.class).in(Singleton.class); // not strictly necessary, only here to signal Guice to eagerly prepare dependencies
 		bind(TransformRequestListener.class).to(ContactsTransformer.class).in(Singleton.class);
-		bind(ContactsParser.class).to(SimpleContactsParser.class).in(Singleton.class);
+		bind(ContactsParser.class).to(AgentListsExportContactsParser.class).in(Singleton.class);
 		bind(EmailAddressFinder.class).to(LocalLookupEmailFinder.class).in(Singleton.class);
 		bind(new TypeLiteral<Map<String,String>>(){}).annotatedWith(Names.named("emailAddressMapping")).toInstance(buildMap(ID_FOR_JAKE + ":" + EMAILADDRESS_FOR_JAKE));
 		bind(ContactsTransformedListener.class).to(SimpleFileWriter.class).in(Singleton.class);

@@ -1,15 +1,14 @@
 package com.waterwagen.mris;
 
-import java.util.Arrays;
 import java.util.List;
 
-public class SimpleContacts implements Contacts
+public class AgentListsExportContactDocument implements ContactsDocument
 {
 	private List<Contact> mContactsList;
 
-	public SimpleContacts(List<Contact> contacts)
+	public AgentListsExportContactDocument(List<Contact> contacts)
 	{
-		this.mContactsList = contacts;
+		mContactsList = contacts;
 	}
 
 	@Override
@@ -41,7 +40,7 @@ public class SimpleContacts implements Contacts
 		return result.toString();
 	}
 
-	private String surroundWithQuotes(String field)
+	private static String surroundWithQuotes(String field)
 	{
 		return "\"" + field + "\"";
 	}

@@ -29,8 +29,8 @@ public class SimpleContactsBuilder
 		return this;
 	}
 
-	public SimpleContacts build()
+	public AgentListsExportContactDocument build()
 	{
-		return new SimpleContacts(contacts);
+		return new AgentListsExportContactDocument(contacts);
 	}
 }
