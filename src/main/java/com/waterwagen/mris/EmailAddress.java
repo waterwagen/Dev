@@ -1,8 +1,14 @@
 package com.waterwagen.mris;
 
+/**
+ * A value class for email addresses.
+ * 
+ * @author waterwagen
+ *
+ */
 public class EmailAddress
 {
-	private String mAddressStr;
+	private final String mAddressStr;
 
 	public EmailAddress(String string)
 	{
