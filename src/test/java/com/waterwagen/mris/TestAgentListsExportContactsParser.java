@@ -2,7 +2,7 @@ package com.waterwagen.mris;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static com.waterwagen.mris.StandardAgentContactBuilder.*;
+import static com.waterwagen.mris.AgentListsExportContactBuilder.*;
 import static com.waterwagen.mris.TestingConstants.*;
 
 import java.util.List;
@@ -15,7 +15,7 @@ public class TestAgentListsExportContactsParser
 	public void testParsingResult()
 	{
 		AgentListsExportContactsParser parser = new AgentListsExportContactsParser();
-		StandardAgentContactBuilder jake_contact = aContact().
+		AgentListsExportContactBuilder jake_contact = aContact().
 													withFirstName(FIRSTNAME_FOR_JAKE).
 													withLastName(LASTNAME_FOR_JAKE).
 													withId(ID_FOR_JAKE).

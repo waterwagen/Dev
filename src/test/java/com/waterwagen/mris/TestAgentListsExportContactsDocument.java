@@ -4,15 +4,15 @@ import static org.junit.Assert.*;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static com.waterwagen.mris.StandardAgentContactBuilder.*;
-import static com.waterwagen.mris.SimpleContactsBuilder.*;
+import static com.waterwagen.mris.AgentListsExportContactBuilder.*;
+import static com.waterwagen.mris.AgentListsExportContactsDocumentBuilder.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestSimpleContacts
+public class TestAgentListsExportContactsDocument
 {
-	private AgentListsExportContactDocument mContacts;
+	private AgentListsExportContactsDocument mContacts;
 	private Contact mContact2;
 	private Contact mContact1;
 	

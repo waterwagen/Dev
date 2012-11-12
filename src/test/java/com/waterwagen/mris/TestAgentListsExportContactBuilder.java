@@ -7,14 +7,14 @@ import static org.hamcrest.Matchers.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestStandardAgentContactBuilder
+public class TestAgentListsExportContactBuilder
 {
-	private StandardAgentContactBuilder mContactBuilder;
+	private AgentListsExportContactBuilder mContactBuilder;
 
 	@Before
 	public void setUp()
 	{
-		mContactBuilder = new StandardAgentContactBuilder();
+		mContactBuilder = new AgentListsExportContactBuilder();
 	}
 
 	@Test

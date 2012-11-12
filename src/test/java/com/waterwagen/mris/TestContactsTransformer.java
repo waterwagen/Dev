@@ -1,7 +1,7 @@
 package com.waterwagen.mris;
 
-import static com.waterwagen.mris.SimpleContactsBuilder.*;
-import static com.waterwagen.mris.StandardAgentContactBuilder.*;
+import static com.waterwagen.mris.AgentListsExportContactsDocumentBuilder.*;
+import static com.waterwagen.mris.AgentListsExportContactBuilder.*;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -49,7 +49,7 @@ public class TestContactsTransformer
 //		mJakeContactMock1 = context.mock(Contact.class, "contact1");
 //		mJakeContactMock2 = context.mock(Contact.class, "contact2");
 
-		StandardAgentContactBuilder builder = aContact().withFirstName("Jacob").withLastName("Taylor").withId("00000").and().withPhoneNumber("5401234567"); 
+		AgentListsExportContactBuilder builder = aContact().withFirstName("Jacob").withLastName("Taylor").withId("00000").and().withPhoneNumber("5401234567"); 
 		mJakeContact1 = builder.build();
 		mJakeContact2 = builder.build();
 //		mContacts = aListOfContacts().withContact(mJakeContact1).and().withContact(mJakeContact2).build();

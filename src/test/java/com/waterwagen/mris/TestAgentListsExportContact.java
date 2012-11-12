@@ -3,7 +3,7 @@ package com.waterwagen.mris;
 import static org.junit.Assert.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static com.waterwagen.mris.StandardAgentContactBuilder.*;
+import static com.waterwagen.mris.AgentListsExportContactBuilder.*;
 import static com.waterwagen.mris.TestUtils.*;
 
 import org.junit.Before;
@@ -11,14 +11,14 @@ import org.junit.Test;
 
 import com.waterwagen.test.helpers.EqualsHashcodeContractTester;
 
-public class TestStandardAgentContact extends EqualsHashcodeContractTester
+public class TestAgentListsExportContact extends EqualsHashcodeContractTester
 {	
-	private StandardAgentContactBuilder mBuilder;
+	private AgentListsExportContactBuilder mBuilder;
 
 	@Before
 	public void setUp()
 	{
-		mBuilder = new StandardAgentContactBuilder();
+		mBuilder = new AgentListsExportContactBuilder();
 	}
 
 	@Test
