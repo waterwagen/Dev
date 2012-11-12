@@ -1,7 +1,7 @@
 package com.waterwagen.mris;
 
 /**
- * A value class for email addresses.
+ * A value type for email addresses.
  * 
  * @author waterwagen
  *
