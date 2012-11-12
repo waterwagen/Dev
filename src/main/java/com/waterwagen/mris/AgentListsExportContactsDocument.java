@@ -2,11 +2,11 @@ package com.waterwagen.mris;
 
 import java.util.List;
 
-public class AgentListsExportContactDocument implements ContactsDocument
+public class AgentListsExportContactsDocument implements ContactsDocument
 {
 	private List<Contact> mContactsList;
 
-	public AgentListsExportContactDocument(List<Contact> contacts)
+	public AgentListsExportContactsDocument(List<Contact> contacts)
 	{
 		mContactsList = contacts;
 	}

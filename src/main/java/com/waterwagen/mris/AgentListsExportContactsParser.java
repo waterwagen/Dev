@@ -40,7 +40,7 @@ public class AgentListsExportContactsParser implements ContactsParser
 	@Override
 	public ContactsDocument parse(String contacts_str)
 	{
-		return new AgentListsExportContactDocument(parseContacts(contacts_str));
+		return new AgentListsExportContactsDocument(parseContacts(contacts_str));
 	}
 
 	private List<Contact> parseContacts(String contacts_str)
@@ -57,7 +57,7 @@ public class AgentListsExportContactsParser implements ContactsParser
 	private Contact buildContact(String contact_str)
 	{
 		List<String> fields = parseContactFields(contact_str);
-		return new StandardAgentContactBuilder().
+		return new AgentListsExportContactBuilder().
 						withId(fields.get(0)).
 						withFirstName(fields.get(2)).
 						withLastName(fields.get(1)).

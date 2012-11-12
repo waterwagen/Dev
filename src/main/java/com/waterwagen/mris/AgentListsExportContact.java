@@ -2,7 +2,7 @@ package com.waterwagen.mris;
 
 import static com.waterwagen.mris.FluentStringBuilder.buildStringStartingWith;
 
-public class StandardAgentContact implements Contact
+public class AgentListsExportContact implements Contact
 {
 	private String mPhoneNumber;
 	private String mLastName;
@@ -10,7 +10,7 @@ public class StandardAgentContact implements Contact
 	private String mId;
 	private EmailAddress mEmailAddress;
 
-	public StandardAgentContact(String mId, String mFirstName, String mLastName, String mPhoneNumber)
+	public AgentListsExportContact(String mId, String mFirstName, String mLastName, String mPhoneNumber)
 	{
 		this.mId = mId;
 		this.mFirstName = mFirstName;
@@ -29,10 +29,10 @@ public class StandardAgentContact implements Contact
 	{
 		if(other == this)
 			return true;
-		if(!(other instanceof StandardAgentContact))
+		if(!(other instanceof AgentListsExportContact))
 			return false;
 		
-		StandardAgentContact other_contact = (StandardAgentContact) other;
+		AgentListsExportContact other_contact = (AgentListsExportContact) other;
 		return mId.equals(other_contact.mId) &&
 				mFirstName.equals(other_contact.mFirstName) &&
 				mLastName.equals(other_contact.mLastName) &&
