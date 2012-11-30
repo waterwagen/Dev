@@ -58,10 +58,10 @@ public class AgentListsExportContactsParser implements ContactsParser
 	{
 		List<String> fields = parseContactFields(contact_str);
 		return new AgentListsExportContactBuilder().
-						withId(fields.get(0)).
-						withFirstName(fields.get(2)).
-						withLastName(fields.get(1)).
-						and().withPhoneNumber(fields.get(3)).build();
+						withId(Id.valueOf(fields.get(0))).
+						withFirstName(FirstName.valueOf(fields.get(2))).
+						withLastName(LastName.valueOf(fields.get(1))).
+						and().withPhoneNumber(PhoneNumber.valueOf(fields.get(3))).build();
 	}
 
 	private List<String> parseContactFields(String contact_str)

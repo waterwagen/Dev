@@ -1,9 +1,6 @@
 package com.waterwagen.mris;
 
-import static com.waterwagen.mris.Utils.EMAILADDRESS_FOR_JAKE;
-import static com.waterwagen.mris.Utils.ID_FOR_JAKE;
-import static com.waterwagen.mris.Utils.SIMPLE_OUTPUT_FILE_PATH;
-import static com.waterwagen.mris.Utils.buildMap;
+import static com.waterwagen.mris.Utils.*;
 
 import java.util.Map;
 
@@ -21,7 +18,7 @@ public final class MrisGuiceModule extends AbstractModule
 		bind(TransformRequestListener.class).to(ContactsTransformer.class).in(Singleton.class);
 		bind(ContactsParser.class).to(AgentListsExportContactsParser.class).in(Singleton.class);
 		bind(EmailAddressFinder.class).to(LocalLookupEmailFinder.class).in(Singleton.class);
-		bind(new TypeLiteral<Map<String,String>>(){}).annotatedWith(Names.named("emailAddressMapping")).toInstance(buildMap(ID_FOR_JAKE + ":" + EMAILADDRESS_FOR_JAKE));
+		bind(new TypeLiteral<Map<Id,String>>(){}).annotatedWith(Names.named("emailAddressMapping")).toInstance(buildMap(ID_FOR_JAKE.stringValue() + ":" + EMAILADDRESS_FOR_JAKE, new IdConverter(), new NonConverter()));
 		bind(ContactsTransformedListener.class).to(SimpleFileWriter.class).in(Singleton.class);
 		bind(String.class).annotatedWith(Names.named("mrisOutputFilePath")).toInstance(SIMPLE_OUTPUT_FILE_PATH);
 		

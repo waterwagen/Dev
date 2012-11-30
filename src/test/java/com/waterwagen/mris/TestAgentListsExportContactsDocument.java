@@ -19,8 +19,8 @@ public class TestAgentListsExportContactsDocument
 	@Before
 	public void setUp()
 	{
-		mContact1 = aContact().withFirstName("Billy").withLastName("Lee").withId("12345").and().withPhoneNumber("5401234567").build();
-		mContact2 = aContact().withFirstName("Bob").withLastName("Johnson").withId("23456").withPhoneNumber("540987654").build();
+		mContact1 = aContact().withFirstName("Billy").withLastName("Lee").withId(Id.valueOf("12345")).and().withPhoneNumber(PhoneNumber.valueOf("5401234567")).build();
+		mContact2 = aContact().withFirstName("Bob").withLastName("Johnson").withId(Id.valueOf("23456")).withPhoneNumber(PhoneNumber.valueOf("540987654")).build();
 		mContacts = aListOfContacts().withContact(mContact1).and().withContact(mContact2).build();
 	}
 	

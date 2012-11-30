@@ -1,7 +1,6 @@
 package com.waterwagen.mris;
 
-import static com.waterwagen.mris.AgentListsExportContactsDocumentBuilder.*;
-import static com.waterwagen.mris.AgentListsExportContactBuilder.*;
+import static com.waterwagen.mris.AgentListsExportContactBuilder.aContact;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -12,7 +11,6 @@ import org.jmock.States;
 import org.jmock.integration.junit4.JMock;
 import org.jmock.integration.junit4.JUnit4Mockery;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -49,7 +47,7 @@ public class TestContactsTransformer
 //		mJakeContactMock1 = context.mock(Contact.class, "contact1");
 //		mJakeContactMock2 = context.mock(Contact.class, "contact2");
 
-		AgentListsExportContactBuilder builder = aContact().withFirstName("Jacob").withLastName("Taylor").withId("00000").and().withPhoneNumber("5401234567"); 
+		AgentListsExportContactBuilder builder = aContact().withFirstName("Jacob").withLastName("Taylor").withId(Id.valueOf("00000")).and().withPhoneNumber(PhoneNumber.valueOf("5401234567")); 
 		mJakeContact1 = builder.build();
 		mJakeContact2 = builder.build();
 //		mContacts = aListOfContacts().withContact(mJakeContact1).and().withContact(mJakeContact2).build();

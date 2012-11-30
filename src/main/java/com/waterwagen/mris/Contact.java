@@ -4,13 +4,13 @@ public interface Contact
 {
 	public void insertEmailAddress(EmailAddress address);
 
-	public String getId();
+	public Id getId();
 
-	public String getLastName();
+	public LastName getLastName();
 
-	public String getFirstName();
+	public FirstName getFirstName();
 
-	public String getPhoneNumber();
+	public PhoneNumber getPhoneNumber();
 
 	public EmailAddress getEmailAddress();
 }

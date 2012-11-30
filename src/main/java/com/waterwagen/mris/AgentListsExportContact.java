@@ -4,18 +4,18 @@ import static com.waterwagen.mris.FluentStringBuilder.buildStringStartingWith;
 
 public class AgentListsExportContact implements Contact
 {
-	private String mPhoneNumber;
-	private String mLastName;
-	private String mFirstName;
-	private String mId;
+	private final PhoneNumber mPhoneNumber;
+	private final LastName mLastName;
+	private final FirstName mFirstName;
+	private final Id mId;
 	private EmailAddress mEmailAddress;
 
-	public AgentListsExportContact(String mId, String mFirstName, String mLastName, String mPhoneNumber)
+	public AgentListsExportContact(Id id, FirstName first_name, LastName last_name, PhoneNumber phone_number)
 	{
-		this.mId = mId;
-		this.mFirstName = mFirstName;
-		this.mLastName = mLastName;
-		this.mPhoneNumber = mPhoneNumber;
+		mId = id;
+		mFirstName = first_name;
+		mLastName = last_name;
+		mPhoneNumber = phone_number;
 	}
 
 	@Override
@@ -43,10 +43,10 @@ public class AgentListsExportContact implements Contact
 	public int hashCode()
 	{
 		int result = 17;
-		result = 31 * result + this.mId.hashCode();
-		result = 31 * result + this.mFirstName.hashCode();
-		result = 31 * result + this.mLastName.hashCode();
-		result = 31 * result + this.mPhoneNumber.hashCode();
+		result = 31 * result + mId.hashCode();
+		result = 31 * result + mFirstName.hashCode();
+		result = 31 * result + mLastName.hashCode();
+		result = 31 * result + mPhoneNumber.hashCode();
 		return result;
 	}
 	
@@ -55,33 +55,33 @@ public class AgentListsExportContact implements Contact
 	{
 		return buildStringStartingWith(getClass().getSimpleName()).
 				plus("[").
-				plus("id=").plus(mId).
-				plus(" firstName=").plus(mFirstName).
-				plus(" lastName=").plus(mLastName).
-				plus(" phoneNumber=").plus(mPhoneNumber).
+				plus("id=").plus(mId.stringValue()).
+				plus(" firstName=").plus(mFirstName.stringValue()).
+				plus(" lastName=").plus(mLastName.stringValue()).
+				plus(" phoneNumber=").plus(mPhoneNumber.stringValue()).
 				plus("]").end();
 	}
 
 	@Override
-	public String getId()
+	public Id getId()
 	{
 		return mId;
 	}
 
 	@Override
-	public String getLastName()
+	public LastName getLastName()
 	{
 		return mLastName;
 	}
 
 	@Override
-	public String getFirstName()
+	public FirstName getFirstName()
 	{
 		return mFirstName;
 	}
 
 	@Override
-	public String getPhoneNumber()
+	public PhoneNumber getPhoneNumber()
 	{
 		return mPhoneNumber;
 	}

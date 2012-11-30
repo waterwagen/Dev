@@ -1,6 +1,8 @@
 package com.waterwagen.mris;
 
-import static com.waterwagen.mris.TestUtils.buildMap;
+import static com.waterwagen.mris.TestUtils.*;
+import static com.waterwagen.mris.TestingConstants.EMAILADDRESS_FOR_JAKE;
+import static com.waterwagen.mris.TestingConstants.ID_FOR_JAKE;
 import static com.waterwagen.mris.TestingConstants.SIMPLE_INPUT_FILE_CONTENTS;
 import static com.waterwagen.mris.TestingConstants.SIMPLE_OUTPUT_FILE_CONTENTS;
 
@@ -23,7 +25,7 @@ public class IntegrationTestContactsTransformer
 	@Before
 	public void setUp() throws Exception
 	{
-		mContactsTransformer = new ContactsTransformer(new AgentListsExportContactsParser(), new LocalLookupEmailFinder(buildMap("00000:peregrinet@gmail.com")));
+		mContactsTransformer = new ContactsTransformer(new AgentListsExportContactsParser(), new LocalLookupEmailFinder(buildMap(ID_FOR_JAKE.stringValue() + ":" + EMAILADDRESS_FOR_JAKE, new IdConverter(), new NonConverter())));
 		listener = context.mock(ContactsTransformedListener.class);
 		mContactsTransformer.setContactsTransformedListener(listener);
 	}

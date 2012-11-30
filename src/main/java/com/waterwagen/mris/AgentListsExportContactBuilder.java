@@ -7,30 +7,50 @@ public class AgentListsExportContactBuilder
 		return new AgentListsExportContactBuilder();
 	}
 
-	private String mId = new Long(Long.MIN_VALUE).toString();
-	private String mFirstName = "John";
-	private String mLastName = "Doe";
-	private String mPhoneNumber = "1112345678";
+	private Id mId = Id.valueOf(Long.valueOf(Long.MIN_VALUE).toString());
+	private FirstName mFirstName = FirstName.valueOf("John");
+	private LastName mLastName = LastName.valueOf("Doe");
+	private PhoneNumber mPhoneNumber = PhoneNumber.valueOf("1112345678");
+
+	public AgentListsExportContactBuilder withId(String id_str)
+	{
+		return withId(Id.valueOf(id_str));
+	}
 	
-	public AgentListsExportContactBuilder withId(String id)
+	public AgentListsExportContactBuilder withId(Id id)
 	{
 		mId = id;
 		return this;
 	}
 	
-	public AgentListsExportContactBuilder withFirstName(String firstname)
+	public AgentListsExportContactBuilder withFirstName(String firstname_str)
 	{
-		mFirstName  = firstname;
+		return withFirstName(FirstName.valueOf(firstname_str));
+	}
+	
+	public AgentListsExportContactBuilder withFirstName(FirstName firstname)
+	{
+		mFirstName = firstname;
 		return this;
 	}
 
-	public AgentListsExportContactBuilder withLastName(String lastname)
+	public AgentListsExportContactBuilder withLastName(String lastname_str)
 	{
-		mLastName  = lastname;
+		return withLastName(LastName.valueOf(lastname_str));
+	}
+
+	public AgentListsExportContactBuilder withLastName(LastName lastname)
+	{
+		mLastName = lastname;
 		return this;
 	}
 
-	public AgentListsExportContactBuilder withPhoneNumber(String phonenumber)
+	public AgentListsExportContactBuilder withPhoneNumber(String phonenumber_str)
+	{
+		return withPhoneNumber(PhoneNumber.valueOf(phonenumber_str));
+	}
+
+	public AgentListsExportContactBuilder withPhoneNumber(PhoneNumber phonenumber)
 	{
 		mPhoneNumber = phonenumber;
 		return this;
@@ -44,6 +64,6 @@ public class AgentListsExportContactBuilder
 
 	public AgentListsExportContact build()
 	{
-		return new AgentListsExportContact(this.mId, this.mFirstName, this.mLastName, this.mPhoneNumber);
+		return new AgentListsExportContact(mId, mFirstName, mLastName, mPhoneNumber);
 	}
 }

@@ -23,13 +23,13 @@ public class AgentListsExportContactsDocument implements ContactsDocument
 		StringBuilder result = new StringBuilder();
 		for(Contact contact : mContactsList)
 		{
-			result.append(surroundWithQuotes(contact.getId())).
+			result.append(surroundWithQuotes(contact.getId().stringValue())).
 					append(",").
-					append(surroundWithQuotes(contact.getLastName())).
+					append(surroundWithQuotes(contact.getLastName().stringValue())).
 					append(",").
-					append(surroundWithQuotes(contact.getFirstName())).
+					append(surroundWithQuotes(contact.getFirstName().stringValue())).
 					append(",").
-					append(surroundWithQuotes(contact.getPhoneNumber())).
+					append(surroundWithQuotes(contact.getPhoneNumber().stringValue())).
 					append(",").
 					append(contact.getEmailAddress() != null ? (surroundWithQuotes(contact.getEmailAddress().stringValue())) : "").
 					append(",");

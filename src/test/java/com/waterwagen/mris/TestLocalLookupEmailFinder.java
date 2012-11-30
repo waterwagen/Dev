@@ -14,6 +14,8 @@ import org.fest.util.Maps;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.waterwagen.mris.TestUtils.Converter;
+
 public class TestLocalLookupEmailFinder
 {
 	private LocalLookupEmailFinder mFinder;
@@ -23,7 +25,7 @@ public class TestLocalLookupEmailFinder
 	@Before
 	public void setUp()
 	{
-		mFinder = new LocalLookupEmailFinder(buildMap(ID_FOR_JAKE + ":" + EMAILADDRESS_FOR_JAKE));
+		mFinder = new LocalLookupEmailFinder(buildMap(ID_FOR_JAKE.stringValue() + ":" + EMAILADDRESS_FOR_JAKE, new IdConverter(), new NonConverter()));
 
 		mContact = aContact().withId(ID_FOR_JAKE).build();
 		mExpectedEmailAddress = new EmailAddress(EMAILADDRESS_FOR_JAKE);		
