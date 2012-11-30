@@ -1,6 +1,0 @@
-!contents -R2 -g -p -f -h
-
-!|com.waterwagen.mris.FirstTestFitnesseFixture|
-|input1|input2|output1?|
-|4|1|5|
-|12|7|19|
