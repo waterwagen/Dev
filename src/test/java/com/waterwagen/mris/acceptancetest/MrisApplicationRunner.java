@@ -7,12 +7,8 @@ import org.fest.swing.core.ComponentLookupScope;
 import org.fest.swing.core.Robot;
 import org.fest.swing.edt.FailOnThreadViolationRepaintManager;
 import org.fest.swing.fixture.FrameFixture;
-import org.fest.swing.fixture.JButtonFixture;
-import org.fest.swing.fixture.JTextComponentFixture;
-import org.fest.util.Arrays;
 
 import com.waterwagen.mris.Main;
-import com.waterwagen.mris.MrisMainWindow;
 
 public class MrisApplicationRunner
 {

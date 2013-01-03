@@ -18,6 +18,6 @@ public class LocalLookupEmailFinder implements EmailAddressFinder
 	@Override
 	public EmailAddress findEmailAddressFor(Contact contact)
 	{
-		return new EmailAddress(mIdToEmailaddressMap.get(contact.getId()));
+		return EmailAddress.valueOf(mIdToEmailaddressMap.get(contact.getId()));
 	}
 }

@@ -1,33 +1,29 @@
 package com.waterwagen.mris;
 
-import static org.junit.Assert.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-import static com.waterwagen.mris.AgentListsExportContactBuilder.*;
-import static com.waterwagen.mris.TestUtils.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.sameInstance;
+import static org.junit.Assert.fail;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import com.waterwagen.test.helpers.EqualsHashcodeContractTester;
-
-public class TestEmailAddress extends EqualsHashcodeContractTester
+public class TestEmailAddress
 {
 	private String ADDRESS_STR = "john@gmail.com";
-	private String ADDRESS_STR_ALT = "billy@yahoo.net";	
 	
 	@Test
-	public void testTheCorrectStringRepresentationOfTheEmailAddressIsReturnedFromTheGetter()
+	public void testStringValueIsTheEmailAddressPassedOnCreation()
 	{
-		assertThat(new EmailAddress(ADDRESS_STR).stringValue(), is(equalTo(ADDRESS_STR)));
+		assertThat(EmailAddress.valueOf(ADDRESS_STR).stringValue(), is(equalTo(ADDRESS_STR)));
 	}
 
 	@Test
-	public void testThatANonNullStringIsRequiredToCreateAnEmailAddressInstance()
+	public void testThatANonNullStringIsRequiredToCreateAnInstance()
 	{
 		try
 		{
-			new EmailAddress(null);
+			EmailAddress.valueOf(null);
 			fail("Expected an exception to be thrown when a null String is passed to the EmailAddress constructor.");
 		}
 		catch(IllegalArgumentException exc)
@@ -39,22 +35,16 @@ public class TestEmailAddress extends EqualsHashcodeContractTester
 			fail("Unexpected exception type thrown when a null String is passed to the EmailAddress constructor. Type is " + exc.getClass().getSimpleName());
 		}		
 	}
+
+	@Test
+	public void testMultipleValueOfInvocationsForTheSamePhoneNumberValueReturnTheSameInstance()
+	{
+		assertThat(EmailAddress.valueOf(ADDRESS_STR), sameInstance(EmailAddress.valueOf(ADDRESS_STR)));
+	}
 	
-	@Override
-	public Object provideInstance()
+	@Test
+	public void testToStringResult()
 	{
-		return new EmailAddress(ADDRESS_STR);
-	}
-
-	@Override
-	public InstancePair provideDifferentInstancesWithTheSameValues()
-	{
-		return new InstancePair(new EmailAddress(ADDRESS_STR), new EmailAddress(ADDRESS_STR));
-	}
-
-	@Override
-	public InstancePair provideDifferentInstancesWithDifferentValues()
-	{
-		return new InstancePair(new EmailAddress(ADDRESS_STR), new EmailAddress(ADDRESS_STR_ALT));
+		assertThat(EmailAddress.valueOf(ADDRESS_STR).toString(), is(equalTo("EmailAddress=" + ADDRESS_STR)));
 	}
 }

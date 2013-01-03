@@ -1,12 +1,10 @@
 package com.waterwagen.mris;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-
-import java.lang.ref.WeakReference;
-import java.lang.reflect.Field;
-import java.util.Map;
-import java.util.WeakHashMap;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.sameInstance;
+import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +19,24 @@ public class TestId
 	{
 		mIdValue = "123";
 		mId = Id.valueOf(mIdValue);		
+	}
+
+	@Test
+	public void testThatANonNullStringIsRequiredToCreateAnInstance()
+	{
+		try
+		{
+			Id.valueOf(null);
+			fail("Expected an exception to be thrown when a null String is passed to the Id constructor.");
+		}
+		catch(IllegalArgumentException exc)
+		{
+			assertThat(exc.getMessage(), is(equalTo("Can not construct a valid Id with a null String value.")));
+		}
+		catch(Exception exc)
+		{
+			fail("Unexpected exception type thrown when a null String is passed to the Id constructor. Type is " + exc.getClass().getSimpleName());
+		}		
 	}
 	
 	@Test

@@ -1,11 +1,10 @@
 package com.waterwagen.mris;
 
-import static org.junit.Assert.*;
+import static com.waterwagen.mris.TestingConstants.SIMPLE_OUTPUT_FILE_CONTENTS;
+import static com.waterwagen.mris.TestingConstants.SIMPLE_OUTPUT_FILE_PATH;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-import static com.waterwagen.mris.AgentListsExportContactBuilder.*;
-import static com.waterwagen.mris.TestUtils.*;
-import static com.waterwagen.mris.TestingConstants.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
 
 import java.io.IOException;
 import java.nio.file.Files;

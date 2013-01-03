@@ -124,6 +124,7 @@ public class SpikeSandbox
 		}
 	}
 	
+	@SuppressWarnings("serial")
 	private static class TestWindow extends JFrame
 	{
 		private JButton mClickMe = new JButton("Click Me!");

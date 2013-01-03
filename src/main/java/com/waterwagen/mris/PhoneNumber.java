@@ -9,6 +9,9 @@ public class PhoneNumber
 
 	public static PhoneNumber valueOf(String phonenumber_value)
 	{
+		if(phonenumber_value == null) 
+			throw new IllegalArgumentException("Can not construct a valid PhoneNumber with a null String value.");
+		
 		PhoneNumber result = mCacheMap.get(phonenumber_value);
 		if(result == null)
 		{
@@ -18,7 +21,7 @@ public class PhoneNumber
 		return result;
 	}
 
-	private String mPhoneNumber;
+	private final String mPhoneNumber;
 
 	private PhoneNumber(String phoneNumberValue)
 	{

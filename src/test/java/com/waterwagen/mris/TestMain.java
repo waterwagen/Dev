@@ -4,7 +4,6 @@ import java.lang.reflect.InvocationTargetException;
 
 import net.java.openjdk.cacio.ctc.junit.CacioTestRunner;
 
-import org.fest.util.Arrays;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

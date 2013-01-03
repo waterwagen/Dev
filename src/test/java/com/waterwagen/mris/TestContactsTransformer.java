@@ -35,7 +35,7 @@ public class TestContactsTransformer
 	private Contact mJakeContact2;
 	private ContactsDocument mContactsMock;
 	private EmailAddress mJakeEmailAddress;
-	private ContactsDocument mContacts;
+//	private ContactsDocument mContacts;
 
 	@Before
 	public void setUp()
@@ -51,7 +51,7 @@ public class TestContactsTransformer
 		mJakeContact1 = builder.build();
 		mJakeContact2 = builder.build();
 //		mContacts = aListOfContacts().withContact(mJakeContact1).and().withContact(mJakeContact2).build();
-		mJakeEmailAddress = new EmailAddress(TestingConstants.EMAILADDRESS_FOR_JAKE);
+		mJakeEmailAddress = EmailAddress.valueOf(TestingConstants.EMAILADDRESS_FOR_JAKE);
 
 		mContactsTransformer = new ContactsTransformer(mParserMock, mFinderMock);
 		mContactsTransformer.setContactsTransformedListener(listener);

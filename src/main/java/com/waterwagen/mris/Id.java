@@ -9,6 +9,9 @@ public class Id
 
 	public static Id valueOf(String id_value)
 	{
+		if(id_value == null) 
+			throw new IllegalArgumentException("Can not construct a valid Id with a null String value.");
+		
 		Id result = mCacheMap.get(id_value);
 		if(result == null)
 		{

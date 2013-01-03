@@ -1,5 +1,8 @@
 package com.waterwagen.mris;
 
+import java.util.Map;
+import java.util.WeakHashMap;
+
 /**
  * A value type for email addresses.
  * 
@@ -8,25 +11,38 @@ package com.waterwagen.mris;
  */
 public class EmailAddress
 {
-	private final String mAddressStr;
+	private static Map<String,EmailAddress> mCacheMap = new WeakHashMap<>();
 
-	public EmailAddress(String string)
+	public static EmailAddress valueOf(String emailaddress_value)
 	{
-		if(string == null)
+		if(emailaddress_value == null) 
 			throw new IllegalArgumentException("Can not construct a valid EmailAddress with a null String value.");
 		
-		mAddressStr = string;
+		EmailAddress result = mCacheMap.get(emailaddress_value);
+		if(result == null)
+		{
+			result = new EmailAddress(emailaddress_value);
+			mCacheMap.put(emailaddress_value, result);
+		}
+		return result;
+	}
+
+	private final String mAddress;
+
+	private EmailAddress(String string)
+	{
+		mAddress = string;
 	}
 
 	public String stringValue()
 	{
-		return mAddressStr;
+		return mAddress;
 	}
 	
 	@Override
 	public String toString()
 	{
-		return stringValue();
+		return String.format("EmailAddress=%s", mAddress);
 	}
 	
 	@Override
@@ -38,14 +54,14 @@ public class EmailAddress
 			return false;
 		
 		EmailAddress other_contact = (EmailAddress) other;
-		return mAddressStr.equals(other_contact.mAddressStr);
+		return mAddress.equals(other_contact.mAddress);
 	}
 	
 	@Override
 	public int hashCode()
 	{
 		int result = 17;
-		result = 31 * result + mAddressStr.hashCode();
+		result = 31 * result + mAddress.hashCode();
 		return result;
 	}
 }

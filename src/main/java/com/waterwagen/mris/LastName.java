@@ -9,6 +9,9 @@ public class LastName
 
 	public static LastName valueOf(String firstname_value)
 	{
+		if(firstname_value == null) 
+			throw new IllegalArgumentException("Can not construct a valid LastName with a null String value.");
+		
 		LastName result = mCacheMap.get(firstname_value);
 		if(result == null)
 		{

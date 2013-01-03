@@ -1,20 +1,18 @@
 package com.waterwagen.mris;
 
-import static org.junit.Assert.*;
+import static com.waterwagen.mris.AgentListsExportContactBuilder.aContact;
+import static com.waterwagen.mris.TestUtils.buildMap;
+import static com.waterwagen.mris.TestingConstants.EMAILADDRESS_FOR_JAKE;
+import static com.waterwagen.mris.TestingConstants.ID_FOR_JAKE;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-import static com.waterwagen.mris.AgentListsExportContactBuilder.*;
-import static com.waterwagen.mris.TestUtils.*;
-import static com.waterwagen.mris.TestingConstants.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.fest.util.Maps;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.waterwagen.mris.TestUtils.Converter;
+import com.waterwagen.mris.TestUtils.IdConverter;
+import com.waterwagen.mris.TestUtils.NonConverter;
 
 public class TestLocalLookupEmailFinder
 {
@@ -28,7 +26,7 @@ public class TestLocalLookupEmailFinder
 		mFinder = new LocalLookupEmailFinder(buildMap(ID_FOR_JAKE.stringValue() + ":" + EMAILADDRESS_FOR_JAKE, new IdConverter(), new NonConverter()));
 
 		mContact = aContact().withId(ID_FOR_JAKE).build();
-		mExpectedEmailAddress = new EmailAddress(EMAILADDRESS_FOR_JAKE);		
+		mExpectedEmailAddress = EmailAddress.valueOf(EMAILADDRESS_FOR_JAKE);		
 	}
 	
 	@Test

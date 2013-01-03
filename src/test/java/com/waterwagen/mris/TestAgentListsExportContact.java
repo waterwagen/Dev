@@ -50,7 +50,7 @@ public class TestAgentListsExportContact extends EqualsHashcodeContractTester
 	@Test
 	public void testTheExpectedEmailAddressIsReturnedFromTheGetter()
 	{
-		EmailAddress emailaddress = new EmailAddress("bobby@isp.net");
+		EmailAddress emailaddress = EmailAddress.valueOf("bobby@isp.net");
 		Contact contact = mBuilder.build();
 		contact.insertEmailAddress(emailaddress);
 		assertThat(contact.getEmailAddress(), is(equalTo(emailaddress)));
